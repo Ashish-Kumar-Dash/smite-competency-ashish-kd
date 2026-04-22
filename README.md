@@ -1,0 +1,1 @@
+# smite-competency-ashish-kd
