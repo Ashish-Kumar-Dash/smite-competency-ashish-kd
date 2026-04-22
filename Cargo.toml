@@ -1,0 +1,8 @@
+[package]
+name = "process_cleanup_demo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+nix = { version = "0.30", default-features = false, features = ["signal", "process"] }
+signal-hook = "0.3"

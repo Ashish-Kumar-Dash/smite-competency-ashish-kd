@@ -1,0 +1,44 @@
+[target]
+# Nyx sharedir produced by scripts/setup-nyx.sh
+path = "/tmp/smite-nyx-lnd-encrypted_bytes"
+
+# No @@ in Nyx mode command.
+args = []
+
+[coverage]
+# AFL Runner coverage mode is optional here; Smite has its own coverage script.
+report_type = "HTML"
+split_reports = false
+misc_show_args = ["--format=html"]
+misc_report_args = []
+
+[afl_cfg]
+# Tune based on host CPU; 8 is a safe multi-core baseline.
+runners = 8
+
+# Set to your local AFL++ path if afl-fuzz is not in PATH.
+afl_binary = "afl-fuzz"
+
+seed_dir = "/tmp/smite-seeds-lnd-encrypted_bytes"
+solution_dir = "/tmp/smite-out-lnd-encrypted-bytes-aflr"
+
+# Keep timeout generous because target setup includes daemon interactions.
+afl_flags = "-t 5000+"
+
+# AFL Runner strategy mode.
+mode = "MultipleCores"
+
+# Required for Nyx target command style.
+nyx_mode = true
+
+[session]
+dry_run = false
+name = "smite-lnd-eb"
+runner = "tmux"
+
+[misc]
+tui = true
+detached = false
+ramdisk = false
+seed = 0xC0FFEE
+use_seed_afl = true
